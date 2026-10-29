@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090c19">
+<title>Connect Live | Premium</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  padding: 18px 12px;
+  background:
+    radial-gradient(ellipse at top, #38204c, transparent 45%),
+    radial-gradient(ellipse at bottom right, #103a46, transparent 35%),
+    linear-gradient(160deg, #101326, #080b16);
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 10px 4px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: #f43c9c;
+}
+
+.badge {
+  color: #50e4b7;
+  border: 1px solid #286b5d;
+  background: #102d30;
+  border-radius: 30px;
+  padding: 8px 11px;
+  font-size: 11px;
+}
+
+.card {
+  padding: 24px 18px;
+  border: 1px solid #30354d;
+  border-radius: 28px;
+  background: linear-gradient(150deg, #1d2039, #101528);
+  box-shadow: 0 20px 55px #0007;
+}
+
+.profile {
+  text-align: center;
+}
+
+.avatar-ring {
+  position: relative;
+  width: 145px;
+  height: 145px;
+  margin: auto;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff36a0, #8245ff, #12d9b0);
+  box-shadow: 0 0 30px #e72f8b40;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border: 4px solid #171a30;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #292039;
+}
+
+.online {
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #123537;
+  color: #5af0c5;
+  border: 1px solid #246e61;
+  padding: 7px 15px;
+  border-radius: 25px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 24px 0 10px;
+}
+
+.verified {
+  color: white;
+  background: #f13a9b;
+  border-radius: 50%;
+  font-size: 14px;
+  padding: 4px 6px;
+}
+
+.age {
+  font-size: 15px;
+  padding: 5px 9px;
+  border: 1px solid #484d67;
+  background: #272b43;
+  border-radius: 8px;
+  vertical-align: 5px;
+}
+
+.stats {
+  margin: 15px 0 22px;
+  color: #c9cde0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.rating {
+  color: #ffd15c;
+}
+
+.description {
+  padding: 16px;
+  line-height: 1.6;
+  font-size: 14px;
+  text-align: center;
+  color: #d8dced;
+  border: 1px solid #30354b;
+  border-radius: 18px;
+  background: #ffffff08;
+  margin-bottom: 24px;
+}
+
+.actions {
+  display: grid;
+  gap: 15px;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 98px;
+  padding: 17px 13px;
+  border-radius: 22px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid #ffffff20;
+  cursor: pointer;
+  transition: transform .2s, filter .2s;
+}
+
+.action:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.12);
+}
+
+.pink {
+  background: linear-gradient(110deg, #e51e7b, #f3459d);
+}
+
+.purple {
+  background: linear-gradient(110deg, #8032e9, #a34cf2);
+}
+
+.green {
+  background: linear-gradient(110deg, #079c78, #12b994);
+}
+
+.icon-box {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #ffffff27;
+  font-size: 25px;
+}
+
+.action-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.action-title {
+  display: block;
+  font-size: clamp(15px, 4vw, 19px);
+  font-weight: 800;
+}
+
+.action-subtitle {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 6px;
+  color: #ffffffd0;
+}
+
+.arrow {
+  font-size: 23px;
+  background: #ffffff20;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  gap: 8px;
+  border-top: 1px solid #ffffff15;
+  padding-top: 23px;
+  margin-top: 28px;
+}
+
+.trust div {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #c5cbe0;
+}
+
+.trust strong {
+  display: block;
+  font-size: 23px;
+  color: #f34d9f;
+  margin-bottom: 5px;
+}
+
+.trust div:nth-child(2) strong {
+  color: #ffd34c;
+}
+
+.trust div:nth-child(3) strong {
+  color: #41dfb4;
+}
+
+/* Advertisement */
+.ad-section {
+  width: 100%;
+  margin: 22px auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ad-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #858da7;
+  margin-bottom: 8px;
+}
+
+.ad-container {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.ad-container iframe {
+  max-width: 100%;
+}
+
+footer {
+  text-align: center;
+  padding: 18px 8px 10px;
+  color: #858da7;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+@media (max-width: 370px) {
+  body {
+    padding: 12px 8px;
+  }
+
+  .card {
+    padding: 20px 12px;
+  }
+
+  .action {
+    padding: 13px 9px;
+    gap: 8px;
+  }
+
+  .icon-box {
+    width: 43px;
+    height: 43px;
+    font-size: 21px;
+  }
+
+  .action-subtitle {
+    font-size: 10px;
+  }
+
+  .arrow {
+    width: 29px;
+    height: 29px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="logo">CONNECT<span>LIVE</span></div>
+    <div class="badge">● ONLINE</div>
+  </header>
+
+  <main class="card">
+
+    <section class="profile">
+      <div class="avatar-ring">
+        <img
+          class="avatar"
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
+          alt="Profile photo"
+        >
+        <div class="online">● Online now</div>
+      </div>
+
+      <h1>
+        Sofia <span class="verified">✓</span>
+        <span class="age">22+</span>
+      </h1>
+
+      <div class="stats">
+        <span class="rating">★ 4.9</span>
+        (1.8k reviews) &nbsp; • &nbsp; ◉ 2.4k views
+      </div>
+    </section>
+
+    <div class="description">
+      💬 Available to connect right now!
+      Choose your preferred way to chat ✨
+    </div>
+
+    <section class="actions">
+
+      <a
+        href="https://auctionr.org/4/4dfcf369574223f310d49560473e6115"
+        class="action pink"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="icon-box">📹</span>
+        <span class="action-content">
+          <span class="action-title">JOIN FREE CALL</span>
+          <span class="action-subtitle">
+            Start a private video conversation
+          </span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a
+        href="https://auctionr.org/4/4dfcf369574223f310d49560473e6115"
+        class="action purple"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="icon-box">💬</span>
+        <span class="action-content">
+          <span class="action-title">ROOM CHAT</span>
+          <span class="action-subtitle">
+            Private instant messaging
+          </span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a
+        href="https://auctionr.org/4/4dfcf369574223f310d49560473e6115"
+        class="action green"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="icon-box">📞</span>
+        <span class="action-content">
+          <span class="action-title">FREE CALL</span>
+          <span class="action-subtitle">
+            One-to-one audio connection
+          </span>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+    </section>
+
+    <section class="trust">
+      <div>
+        <strong>◇</strong>
+        Privacy Focused
+      </div>
+      <div>
+        <strong>ϟ</strong>
+        Easy to Use
+      </div>
+      <div>
+        <strong>▣</strong>
+        Private Chat
+      </div>
+    </section>
+
+  </main>
+
+  <!-- EXISTING BANNER AD: ORIGINAL POSITION -->
+  <section class="ad-section">
+    <div class="ad-label">ADVERTISEMENT</div>
+
+    <div class="ad-container">
+      <script>
+        var atOptions = {
+          'key': 'a5b80e67d65f773f39f9edd52d25fdda',
+          'format': 'iframe',
+          'height': 60,
+          'width': 468,
+          'params': {}
+        };
+      </script>
+
+      <script src="https://bicea.org/22/a5b80e67d65f773f39f9edd52d25fdda"></script>
+    </div>
+  </section>
+
+  <footer>
+    Connect Live · Premium Experience<br>
+    Update your profile and connect your actual calling/chat service.
+  </footer>
+
+</div>
+
+<!-- SECOND AD SCRIPT -->
+<script>
+(function () {
+  if (document.querySelector('script[data-zone="11010469"]')) {
+    return;
+  }
+
+  var script = document.createElement('script');
+  script.setAttribute('data-zone', '11010469');
+  script.src = 'https://nap5k.com/tag.min.js';
+  script.async = true;
+
+  document.body.appendChild(script);
+})();
+</script>
+
+</body>
+</html>
